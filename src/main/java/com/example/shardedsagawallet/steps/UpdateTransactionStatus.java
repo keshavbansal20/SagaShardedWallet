@@ -6,7 +6,8 @@ import com.example.shardedsagawallet.entities.Transaction;
 import com.example.shardedsagawallet.entities.TransactionStatus;
 import com.example.shardedsagawallet.repositories.TransactionRepository;
 import com.example.shardedsagawallet.services.saga.SagaContext;
-import com.example.shardedsagawallet.services.saga.SagaStep;
+import com.example.shardedsagawallet.services.saga.SagaStepInterface;
+import com.example.shardedsagawallet.steps.SagaStepFactory.SagaStepType;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UpdateTransactionStatus implements SagaStep {
+public class UpdateTransactionStatus implements SagaStepInterface {
     
     private final TransactionRepository transactionRepository;
 
@@ -56,13 +57,13 @@ public class UpdateTransactionStatus implements SagaStep {
 
         transaction.setStatus(originalTransactionStatus);
         transactionRepository.save(transaction);
-        
+
         return true;
     }
 
     @Override
     public String getStepName(){
-        return "UpdateTransactionStatus";
+        return SagaStepType.UDPATE_TRANSACTION_STATUS_STEP.toString();
     }
 
 }
