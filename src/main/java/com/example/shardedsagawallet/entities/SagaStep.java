@@ -41,5 +41,29 @@ public class SagaStep {
     @Column(name="step_data" , columnDefinition = "json")
     private String stepData;
 
+    public void markAsPending(){
+        this.status = StepStatus.PENDING;
+    }
+
+    public void markAsRunning(){
+        this.status = StepStatus.RUNNING;
+    }
+
+    public void markAsCompleted(){
+        this.status = StepStatus.COMPLETED;
+    }
+
+    public void markAsFailed(){
+        this.status = StepStatus.FAILED;
+    }
+
+    public void markAsCompensating(){
+        this.status = StepStatus.COMPNENSATING;
+    }
+    public void markAsCompensated(){
+        this.status = StepStatus.COMPENSATED;
+    }
+
+   
 
 }

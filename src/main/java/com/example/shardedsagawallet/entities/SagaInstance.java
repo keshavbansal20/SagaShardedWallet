@@ -35,7 +35,34 @@ public class SagaInstance {
     @Column(name="context" , columnDefinition = "json")
     private String context;
 
-    @Column(name="current_step",nullable = false)
+    @Column(name="current_step")
     private String currentStep;
+
+
+    public void markAsStarted(){
+        this.status = SagaStatus.STARTED;
+    }
+
+    public void markAsRunning(){
+        this.status = SagaStatus.RUNNING;
+    }
+
+    public void markAsCompleted(){
+        this.status = SagaStatus.COMPLETED;
+    }
+
+    public void markAsFailed(){
+        this.status = SagaStatus.FAILED;
+    }
+
+    public void maskAsCompensating(){
+        this.status = SagaStatus.COMPENSATING;
+    }
+
+    public void markAsCompensated(){
+        this.status = SagaStatus.COMPENSATED;
+    }
+
+
 
 }
