@@ -4,10 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Map;
+
+import groovy.transform.builder.Builder;
+
 import java.util.HashMap;
 import java.math.BigDecimal;
 
 @Data
+@Builder
 @NoArgsConstructor
 public class SagaContext {
     

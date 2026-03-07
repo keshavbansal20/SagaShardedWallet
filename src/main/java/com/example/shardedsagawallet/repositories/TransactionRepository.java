@@ -18,7 +18,7 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long> {
     @Query("SELECT t from transaction t where t.fromWalletId = :walletId OR t.toWalletId = :walletId")
     List<Transaction> findByWalletId(Long walletId);
 
-    List<Transaction> findByStatus(TransactionStatus status);
+    List<Transaction> findByStatus(com.example.shardedsagawallet.entities.TransactionStatus status);
 
     List<Transaction> findBySagaInstanceId(Long sagaInstanceId);
 

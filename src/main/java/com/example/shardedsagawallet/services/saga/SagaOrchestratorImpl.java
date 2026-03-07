@@ -96,7 +96,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
 
             } else {
 
-                sagaStepDB.markAsFailed();;
+                sagaStepDB.markAsFailed();
                 sagaStepRepository.save(sagaStepDB);
 
                 log.error("Failed to execute step {} ",stepName);
@@ -115,7 +115,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
     }
 
     @Override
-
+    @Transactional
     public boolean compensateStep(Long sagaInstanceId , String stepName){
         SagaInstance sagaInstance  = sagaInstanceRepository.findById(sagaInstanceId).orElseThrow(() -> new RuntimeException("Saga Intance not found"));
 
@@ -167,6 +167,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
     }
 
     @Override
+    @Transactional
     public void compensateSaga(Long sagaInstanceId){
         SagaInstance sagaInstance = sagaInstanceRepository.findById(sagaInstanceId).orElseThrow(() -> new RuntimeException("Saga instance not found"));
 
@@ -196,6 +197,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
     }
 
     @Override
+    @Transactional
     public void failSaga(Long sagaInstanceId){
         SagaInstance sagaInstance = sagaInstanceRepository.findById(sagaInstanceId).orElseThrow(() -> new RuntimeException("Saga Instance not found"));
         sagaInstance.markAsFailed();
@@ -204,6 +206,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
     }
 
     @Override
+    @Transactional
     public void completeSaga(Long sagaInstanceId){
         SagaInstance sagaInstance = sagaInstanceRepository.findById(sagaInstanceId).orElseThrow(()-> new RuntimeException("Saga Instance not found"));
 

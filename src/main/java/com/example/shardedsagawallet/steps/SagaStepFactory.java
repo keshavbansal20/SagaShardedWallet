@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -19,6 +20,12 @@ public class SagaStepFactory {
         CREDIT_DESTINATION_WALLET_STEP , 
         UDPATE_TRANSACTION_STATUS_STEP
     }
+
+    public static final List<SagaStepType> TransferMoneySagaSteps = List.of( 
+        SagaStepFactory.SagaStepType.DEBIT_SOURCE_WALLET_STEP,
+        SagaStepFactory.SagaStepType.CREDIT_DESTINATION_WALLET_STEP,
+        SagaStepFactory.SagaStepType.UDPATE_TRANSACTION_STATUS_STEP
+    );
 
     public SagaStepInterface getSagaStep(String stepName){
         return sagaStepMap.get(stepName);
