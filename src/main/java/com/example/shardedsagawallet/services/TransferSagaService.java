@@ -36,11 +36,11 @@ public class TransferSagaService {
 
         SagaContext sagaContext = SagaContext.builder()
             .data(Map.ofEntries(
-                Map.entry("transactionId", transaction.getId());
-                Map.entry("fromWalletId",fromWalletId);
-                Map.entry("toWalletId", toWalletId);
-                Map.entry("amount", amount);
-                Map.entry("description", description);
+                Map.entry("transactionId", transaction.getId()),
+                Map.entry("fromWalletId",fromWalletId),
+                Map.entry("toWalletId", toWalletId),
+                Map.entry("amount", amount),
+                Map.entry("description", description)
             ))
             .build();
 
