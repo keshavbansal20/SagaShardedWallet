@@ -111,7 +111,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
             log.error("Failed to execute step {}" , stepName);
             return false;
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -185,6 +185,8 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
                 allCompensated = true;
             }
         }
+
+        //Todo :make the compensation go in parallel
 
         if(allCompensated){
             sagaInstance.markAsCompensated();

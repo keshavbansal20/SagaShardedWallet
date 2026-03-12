@@ -27,7 +27,7 @@ public class TransactionController {
     public ResponseEntity<TransferResponseDTO> createTransaction(@RequestBody TransferRequestDTO transferRequestDTO){
         
         try{
-            Long sagaInstanceId = transferSagaService.initiateTransfer(transferRequestDTO.getFromWalleteId(),transferRequestDTO.getToWalletId() , transferRequestDTO.getAmount(), transferRequestDTO.getDescription());
+            Long sagaInstanceId = transferSagaService.initiateTransfer(transferRequestDTO.getFromWalletId(),transferRequestDTO.getToWalletId() , transferRequestDTO.getAmount(), transferRequestDTO.getDescription());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(
                 TransferResponseDTO.builder()

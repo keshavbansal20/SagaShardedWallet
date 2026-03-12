@@ -44,18 +44,18 @@ public class TransferSagaService {
             ))
             .build();
 
-        log.info("Saga context created with id {}" , sagaContext.get("description"));
+        log.info("Saga context created with description {}" , sagaContext.get("description"));
         Long sagaInstanceId = sagaOrchestrator.startSaga(sagaContext);
         log.info("Saga instance created with id {}",sagaInstanceId);
 
         transactionService.updateTransactionWithSagaInstanceId(transaction.getId(), sagaInstanceId);
         
-        excecuteTransferSaga(sagaInstanceId);
+        executeTransferSaga(sagaInstanceId);
         return sagaInstanceId;
     }
 
 
-    public void excecuteTransferSaga(Long sagaInstanceId){
+    public void executeTransferSaga(Long sagaInstanceId){
         log.info("Executing transfer saga with id {}",sagaInstanceId);
 
         try{

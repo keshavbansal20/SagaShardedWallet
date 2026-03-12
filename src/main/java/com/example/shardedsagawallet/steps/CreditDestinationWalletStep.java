@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CreditDestinationWalletStep implements SagaStepInterface {
     
-    private WalletRepository  walletRepository;
+    private final WalletRepository  walletRepository;
 
     @Override
     @Transactional

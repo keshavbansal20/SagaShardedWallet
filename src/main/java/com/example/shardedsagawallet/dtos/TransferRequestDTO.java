@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class TransferRequestDTO {
-    private Long fromWalleteId;
+    private Long fromWalletId;
     private Long toWalletId;
     private BigDecimal amount;
     private String description;

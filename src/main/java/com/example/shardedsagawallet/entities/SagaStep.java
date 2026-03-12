@@ -35,7 +35,7 @@ public class SagaStep {
     @Column(name="status",nullable = false)
     private StepStatus status;
 
-    @Column(name="error_message",nullable = false)
+    @Column(name="error_message",nullable = true)
     private String errorMessage;
 
     @Column(name="step_data" , columnDefinition = "json")
@@ -58,7 +58,7 @@ public class SagaStep {
     }
 
     public void markAsCompensating(){
-        this.status = StepStatus.COMPNENSATING;
+        this.status = StepStatus.COMPENSATING;
     }
     public void markAsCompensated(){
         this.status = StepStatus.COMPENSATED;

@@ -36,27 +36,27 @@ rules:
           standard:
             shardingColumn: user_id
             shardingAlgorithmName: db-inline-user-id
-          keyGenerateStrategy:
-            column: id
-            keyGeneratorName: snowflakestrategy
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflakestrategy
       transaction:
         actualDataNodes: shardwallet${1..2}.transaction
-        databasesStrategy:
+        databaseStrategy:
           standard:
             shardingColumn: id
             shardingAlgorithmName: db-inline
-          keyGenerateStrategy:
-            column: id
-            keyGeneratorName: snowflakesstrategy
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflakestrategy
       saga_instance:
         actualDataNodes: shardwallet${1..2}.saga_instance
         databaseStrategy:
           standard:
             shardingColumn: id
-            shardingAlgorithName: db-inline
+            shardingAlgorithmName: db-inline
         keyGenerateStrategy:
           column: id
-          keyGeneratorName: snowflakesstrategy
+          keyGeneratorName: snowflakestrategy
       saga_step:
         actualDataNodes: shardwallet${1..2}.saga_step
         databaseStrategy:
@@ -78,7 +78,7 @@ rules:
       db-inline-user-id:
         type: INLINE
         props: 
-          algorithm-expression: shardwallet${user_id % 2+ 1}
+          algorithm-expression: shardwallet${user_id % 2 + 1}
 
     keyGenerators:
       snowflakestrategy:

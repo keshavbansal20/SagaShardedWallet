@@ -68,6 +68,6 @@ public class TransactionService {
         transaction.setSagaInstanceId(sagaInstanceId);
         transactionRepository.save(transaction);
         
-        log.info("transaction udpate with saga instance id {} ",sagaInstanceId );
+        log.info("transaction update with saga instance id {} ",sagaInstanceId );
     }
 }   

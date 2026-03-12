@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.example.shardedsagawallet.entities.TransactionType;
 
 @Entity
 @Table(name="transaction")

@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.shardedsagawallet.entities.Transaction;
-import org.springframework.transaction.TransactionStatus;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 
     List<Transaction> findByToWalletId(Long toWalletId);
 
-    @Query("SELECT t from transaction t where t.fromWalletId = :walletId OR t.toWalletId = :walletId")
+    @Query("SELECT t from Transaction t WHERE t.fromWalletId = :walletId OR t.toWalletId = :walletId")
     List<Transaction> findByWalletId(Long walletId);
 
     List<Transaction> findByStatus(com.example.shardedsagawallet.entities.TransactionStatus status);
