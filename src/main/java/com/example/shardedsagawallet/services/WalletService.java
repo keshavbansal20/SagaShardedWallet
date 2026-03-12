@@ -39,31 +39,38 @@ public class WalletService {
     }
 
     public Wallet getWalletById(Long id){
+        log.info("Getting wallet by id {}",id );
         return walletRepository.findById(id).orElseThrow( () -> new RuntimeException("Wallet not found"));
     }
 
-    public List<Wallet> getWalletByUserId(Long userId){
-        return walletRepository.findByUserId(userId);
+    
+
+    @Transactional
+    public void debit(Long userId , BigDecimal amount){
+        log.info("Debiting {} from wallet {}",amount , userId);
+        Wallet wallet = getWalletByUserId(userId);
+        walletRepository.updateBalanceByUserId(userId, wallet.getBalance().subtract(amount));
+        // wallet.debit(amount);
+        // walletRepository.save(wallet);
+        log.info("Debit successful for wallet {}", wallet.getId());
+    }
+
+
+    public Wallet getWalletByUserId(Long userId){
+        log.info("Getting wallet by user id {}" , userId);
+        return walletRepository.findByUserId(userId).get(0);
     }
 
     @Transactional
-    public void debit(Long walletId , BigDecimal amount){
-        log.info("Debiting {} from wallet {}",amount , walletId);
-        Wallet wallet = getWalletById(walletId);
-        wallet.debit(amount);
-        walletRepository.save(wallet);
-        log.info("Debit successful for wallet {}", walletId);
-    }
+    public void credit(Long userId , BigDecimal amount){
+        log.info("Creding {} to wallet {}" , amount , userId) ;
 
-    @Transactional
-    public void credit(Long walletId , BigDecimal amount){
-        log.info("Creding {} to wallet {}" , amount , walletId) ;
-
-        Wallet wallet = getWalletById(walletId);
-        wallet.credit(amount);
-        walletRepository.save(wallet);
+        Wallet wallet = getWalletByUserId(userId);
+        walletRepository.updateBalanceByUserId(userId, amount);
+        // wallet.credit(amount);
+        // walletRepository.save(wallet);
         
-        log.info("Credit successful for wallet {}",walletId);
+        log.info("Credit successful for wallet {}",wallet.getId());
     }
 
     public BigDecimal getWalletBalance(Long walletId){

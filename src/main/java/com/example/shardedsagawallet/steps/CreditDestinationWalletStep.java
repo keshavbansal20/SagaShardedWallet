@@ -40,8 +40,9 @@ public class CreditDestinationWalletStep implements SagaStepInterface {
         context.put("orginalToWalletBalance",wallet.getBalance());
 
         //step3 :credit the destination wallet
-        wallet.credit(amount);
-        walletRepository.save(wallet);
+        // wallet.credit(amount);
+        // walletRepository.save(wallet);
+        walletRepository.updateBalanceByUserId(toWalletId, wallet.getBalance().add(amount));
 
         log.info("Wallet save with balance {}",wallet.getBalance());
 

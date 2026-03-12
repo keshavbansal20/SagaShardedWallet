@@ -34,10 +34,13 @@ public class Transaction {
     @Column(name="amount",nullable = false)
     private BigDecimal amount;
 
-    @Column(name="transaction_status", nullable = false)
+    @Column(name="transaction_status")
     private TransactionStatus status = TransactionStatus.PENDING;
 
-    @Column(name="description",nullable = false)
+    @Column(name = "transaction_type")
+    private TransactionType type = TransactionType.TRANSFER;
+
+    @Column(name="description")
     private String description;
 
     @Column(name="saga_instance_id")

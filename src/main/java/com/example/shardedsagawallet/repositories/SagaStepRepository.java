@@ -3,6 +3,7 @@ package com.example.shardedsagawallet.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.example.shardedsagawallet.entities.SagaStep;
 import com.example.shardedsagawallet.entities.StepStatus;
@@ -10,6 +11,7 @@ import com.example.shardedsagawallet.entities.StepStatus;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface SagaStepRepository extends JpaRepository<SagaStep,Long> {
 
     List<SagaStep> findBySagaInstanceId(Long sagaInstanceId);
@@ -18,7 +20,7 @@ public interface SagaStepRepository extends JpaRepository<SagaStep,Long> {
 
     Optional<SagaStep> findBySagaInstanceIdAndStepNameAndStatus(Long sagaInstanceId , String stepName , StepStatus status);
 
-    @Query("SELECT s FROM SagaStep s WHERE s.sagaInstanceId = :sagaInstanceId AND s.status =='COMPLETED")
+    @Query("SELECT s FROM SagaStep s WHERE s.sagaInstanceId = :sagaInstanceId AND s.status == StepStatus.COMPLETED")
     List<SagaStep> findCompletedStepsBySagaInstanceId(@Param("sagaInstanceId") Long sagaInstanceId);
 
     @Query("SELECT s FROM SagaStep s WHERE s.sagaInstanceId = :sagaInstanceId AND s.status IN { 'COMPLETED','COMPENSATED'}")
